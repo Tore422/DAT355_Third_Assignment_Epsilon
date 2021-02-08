@@ -1,0 +1,15 @@
+rule EPackage2Schema 
+transform package : IN!EPackage 
+to schema : OUT!ClassFile, main : OUT!Method {
+	/*
+	main.name = "main";
+	schema.methods.add(main);
+	schema.mainMethod = main;*/
+}
+
+
+/*
+rule EClass2Table
+transform c : IN!EClass
+to t : OUT!TableFile {
+}*/
