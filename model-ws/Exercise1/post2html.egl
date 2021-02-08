@@ -9,11 +9,11 @@
 	<h2>[%= p.title %]</h2>	
 	
 	[% for (content in p.content) { %]
-		[% if (content == Paragraph) { %]
+		[% if (content.isKindOf(Paragraph)) { %]
 			<p>[%= content.markdownContent %]</p>
 			<br>
 		[% } else { %]
-			<img src=[%= content.fileURL %] alt=[%= content.caption %]>
+			<img src=[%= content.caption + ".JPG" %] alt=[%= content.caption %]>
 		[% } %]
 	[% } %]
 

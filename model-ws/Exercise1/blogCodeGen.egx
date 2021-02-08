@@ -8,11 +8,23 @@ rule Post2HTML transform p : Post {
 	target : "output/" + p.shortTitle + "/" + p.shortTitle + ".html"
 }
 
+
+operation Image copyImage() {
+	var sourcePath = self.fileURL;
+	sourcePath.println();
+	var destinationPath = "output/" + self.caption + ".JPG";
+	destinationPath.println();
+	/** Do something to copy files? 
+		Need to somehow get short-title of post for 
+        correct destination folder.*/
+}
+
+
 rule Image2Image transform i : Image {
-	target : "output/" + i + "picture.JPG"
+	pre {
+		i.copyImage();
+	}
+	target : "output/" + i.caption + ".JPG"
 }
 
 
-operation Content isImage() : Boolean {
-	return (self.class == Image.class); 
-}
