@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+	[%= b.author %]'s blog
+</title>
+</head>
+<body>
+<h1>[%= b.author %]'s blog</h1>
+[% for (post in b.posts) { %]
+    <a href=[%= post.shortTitle %] + "/" + [%= post.shortTitle %] + ".html">[%= post.title %]</a>
+    <br>
+[% } %]
+</body>
+</html>

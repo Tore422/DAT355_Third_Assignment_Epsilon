@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+	[%= p.shortTitle %]
+</title>
+</head>
+<body>
+	<h2>[%= p.title %]</h2>	
+	
+	[% for (content in p.content) { %]
+		[% if (content == Paragraph) { %]
+			<p>[%= content.markdownContent %]</p>
+			<br>
+		[% } else { %]
+			<img src=[%= content.fileURL %] alt=[%= content.caption %]>
+		[% } %]
+	[% } %]
+
+</body>
+</html>
