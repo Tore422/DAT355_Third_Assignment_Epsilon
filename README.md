@@ -16,5 +16,12 @@ optimized for the machine to read and execute.<br>
 Each step along the process takes the resulting model from the previous step to perform the next step.<br>
 Creating a series of model transformations from the written code, to the binary data read and executed by the machine.
 
+2)<br>
+Files are located in Exercise1 project folder (./model-ws/Exercise1/)
+
+3.1)<br>
+To be done.
+
+
 
 
