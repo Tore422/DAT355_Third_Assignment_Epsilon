@@ -20,8 +20,17 @@ Creating a series of model transformations from the written code, to the binary 
 Files are located in Exercise1 project folder (./model-ws/Exercise1/)
 
 3.1)<br>
+ETL file is exe.etl in (model-ws/Exercise3/exe.etl)<br>
+and the output .javacode file is in (model-ws/Exercise3/output/MyRelationalModel.javacode)
+
+To be done. 
+Work in progress...
+
+3.2)<br>
 To be done.
 
+3.3)<br>
+To be done.
 
 
 
