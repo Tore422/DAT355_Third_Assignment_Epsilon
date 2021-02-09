@@ -1,15 +1,23 @@
 rule EPackage2Schema 
 transform package : IN!EPackage 
-to schema : OUT!ClassFile, main : OUT!Method {
-	/*
-	main.name = "main";
-	schema.methods.add(main);
-	schema.mainMethod = main;*/
+to schema : OUT!Schema {
+	schema.tables.add(package.EClass.equivalent()); // May need to use equivalents(), but it puts tables outside Schemas in model... 
 }
 
-
-/*
+@lazy
 rule EClass2Table
-transform c : IN!EClass
-to t : OUT!TableFile {
-}*/
+transform class : IN!EClass
+to table : OUT!Table, column : OUT!Column {
+	table.name = class.name;
+	column.name = "id";
+//	column.type.dataType = #NUMBER; // Missing something for using enum?
+	table.columns.add(column);
+//	table.constraints.add(column);
+	
+	
+	
+//	table.primaryKey.definedOnColumns = column;
+//	table.primaryKey.definedOnColumns = column;
+//	table.primaryKey.belongingTable = table;
+	
+}
