@@ -29,14 +29,18 @@ Error: Cannot find enumeration literal SQLDataType#NUMBER in model IN<br>
 
 
 
-
 3.2)<br>
-To be done.
-Work in progress...
+Still unable to specify Column data type as NUMBER, due to cant find the enum.<br>
+
+Starting to think I might be doing something wrong,<br>
+as the model seems to build on its own components as input?<br>
+Could be the reason behind equivalent() errors.
+
+
 
 
 3.3)<br>
-To be done.
-
+To be done.<br>
+Work in progress...
 
 
