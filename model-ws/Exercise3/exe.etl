@@ -7,8 +7,8 @@ to schema : OUT!Schema {
 	for (element in eClasses) {
 		("Element is EClass: " + element).println();
 		schema.tables.add(package.EClass.equivalent());
-		//schema.tables.add(element); // May need to use equivalents(), but it puts tables outside Schemas in model...
-									// And the second EClass Column fails to be added with error: relational.impl.ColumnImpl
+		//schema.tables.add(element); // May need to use equivalents(), but it causes the error: relational.impl.ColumnImpl
+									// when the second EClass Column fails to be added. 
 		"Added element to Schema table".println();
 	} 
 }
@@ -40,4 +40,84 @@ primaryKey : OUT!PrimaryKeyConstraint {
 	table.columns.add(column);
 	"Added Column to table".println();
 	"".println();
+	
+//	class.EAttributes.equivalent().println();
+	for (attribute in class.EAttributes.equivalents()) {
+		attribute.println();
+		table.columns.add(attribute); // Somehow produces an error with unknown reason...
+	}
+//	table.columns.add(class.EAttributes.equivalent());
+	
 }
+
+
+@lazy
+rule EAttribute2Column
+transform attribute : IN!EAttribute
+to column : OUT!Column, columnType : OUT!ColumnType {
+	
+	"Made a new Column based on attribute".println();
+	("attribute: " + attribute.eAttributeType).println();
+
+	switch (attribute.eAttributeType.name) {
+		case "EString" : {
+			"string".println(); 
+			columnType.size = 4000;
+			}
+		case "EEnum" : {
+			"enum".println(); 
+			columnType.size = 2; 
+			columnType.decimalPlaces = 0;
+			columnType.dataType = SQLDataType#NUMBER; // Still does not work due to: Cannot find enumeration literal SQLDataType#NUMBER in model IN
+			}
+		case "ELong" : {
+			"Long".println();
+			columnType.size = 32; 
+			columnType.decimalPlaces = 0;
+			columnType.dataType = SQLDataType#NUMBER;
+			}
+		case "EInteger" : {
+			"Int".println();
+			columnType.size = 32; 
+			columnType.decimalPlaces = 0;
+			columnType.dataType = SQLDataType#NUMBER;
+			} 
+		case "EShort" : {
+			"Short".println();
+			columnType.size = 32; 
+			columnType.decimalPlaces = 0;
+			columnType.dataType = SQLDataType#NUMBER;
+			}
+		case "EByte" : {
+			"Byte".println();
+			columnType.size = 32; 
+			columnType.decimalPlaces = 0;
+			columnType.dataType = SQLDataType#NUMBER;
+			}
+		case "EFloat" : {
+			"Float".println();
+			columnType.size = 32; 
+			columnType.decimalPlaces = 4;
+			columnType.dataType = SQLDataType#NUMBER;
+			}
+		case "EDouble" : {
+			"Double".println();
+			columnType.size = 32; 
+			columnType.decimalPlaces = 4;
+			columnType.dataType = SQLDataType#NUMBER;
+			}
+		case "EBoolean" : {
+			"Boolean".println();
+			columnType.size = 1; 
+			columnType.decimalPlaces = 0;
+			columnType.dataType = SQLDataType#NUMBER;
+			}
+		default : "Did not recognize attribute".println();
+	}
+	column.type = columnType;
+	"Added columnType to column".println();	
+}
+
+
+
+

@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<r:Schema xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:r="http://www.hvl.no/pcs955/mt/relational">
-  <tables name="EPackage">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:r="http://www.hvl.no/pcs955/mt/relational">
+  <r:Schema/>
+  <r:Table name="EPackage">
     <columns name="id">
       <type/>
     </columns>
-    <constraints xsi:type="r:PrimaryKeyConstraint" definedOnColumns="//@tables.0/@columns.0"/>
-  </tables>
-</r:Schema>
+    <constraints xsi:type="r:PrimaryKeyConstraint" definedOnColumns="/1/@columns.0"/>
+  </r:Table>
+  <r:Column>
+    <type size="4000"/>
+  </r:Column>
+  <r:Column>
+    <type size="4000"/>
+  </r:Column>
+</xmi:XMI>
