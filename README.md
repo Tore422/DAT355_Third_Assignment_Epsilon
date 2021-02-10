@@ -21,13 +21,19 @@ Files are located in Exercise1 project folder (./model-ws/Exercise1/)
 
 3.1)<br>
 ETL file is exe.etl in (model-ws/Exercise3/exe.etl)<br>
-and the output .javacode file is in (model-ws/Exercise3/output/MyRelationalModel.javacode)
+and the output .relational file is in (model-ws/Exercise3/output/MyRelationalModel.relational).
 
-To be done. 
-Work in progress...
+It seems it is not possible to specify Column data type as NUMBER,<br>
+as ETL cant find the enum for some reason?<br>
+Error: Cannot find enumeration literal SQLDataType#NUMBER in model IN<br>
+
+
+
 
 3.2)<br>
 To be done.
+Work in progress...
+
 
 3.3)<br>
 To be done.
