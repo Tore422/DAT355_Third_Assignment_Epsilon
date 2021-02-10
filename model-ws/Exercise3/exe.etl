@@ -1,23 +1,43 @@
 rule EPackage2Schema 
 transform package : IN!EPackage 
 to schema : OUT!Schema {
-	schema.tables.add(package.EClass.equivalent()); // May need to use equivalents(), but it puts tables outside Schemas in model... 
+	var eClasses = package.EClass.equivalents();
+	"Printing classes".println();
+	eClasses.println();
+	for (element in eClasses) {
+		("Element is EClass: " + element).println();
+		schema.tables.add(package.EClass.equivalent());
+		//schema.tables.add(element); // May need to use equivalents(), but it puts tables outside Schemas in model...
+									// And the second EClass Column fails to be added with error: relational.impl.ColumnImpl
+		"Added element to Schema table".println();
+	} 
 }
 
 @lazy
 rule EClass2Table
 transform class : IN!EClass
-to table : OUT!Table, column : OUT!Column {
+to table : OUT!Table, 
+column : OUT!Column,
+columnType : OUT!ColumnType,
+primaryKey : OUT!PrimaryKeyConstraint {
+	("Class to table: " + class).println();
 	table.name = class.name;
+	"Set name of table".println();
 	column.name = "id";
-//	column.type.dataType = #NUMBER; // Missing something for using enum?
+	"Set Column name".println();
+	
+//	columnType.dataType = SQLDataType#NUMBER; // Error: Cannot find enumeration literal SQLDataType#NUMBER in model IN
+//	"Set columnType data type".println();
+	
+	column.type = columnType;
+	"Added columnType to Column".println();
+	
+	primaryKey.belongingTable = table;
+	"Connected primary key and table".println();
+	primaryKey.definedOnColumns.add(column);
+	"Added primary key constraint on Column".println();
+	
 	table.columns.add(column);
-//	table.constraints.add(column);
-	
-	
-	
-//	table.primaryKey.definedOnColumns = column;
-//	table.primaryKey.definedOnColumns = column;
-//	table.primaryKey.belongingTable = table;
-	
+	"Added Column to table".println();
+	"".println();
 }
